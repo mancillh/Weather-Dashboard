@@ -22,26 +22,29 @@
   </header>
     <main class="flex-row justify-center align-center p-4 container">
         <aside class="col-3">
-            <form>
+            <form id="city-form">
                 <div class="mb-3">
-                  <label for="location" class="form-label">Search for a City: </label>
-                  <input type="text" class="form-control" id="city" placeholder="San Diego" aria-describedby="location">
+                  <label for="city-input" class="form-label">Search for a City: </label>
+                  <input type="text" class="form-control" id="city-input" placeholder="San Diego" aria-describedby="location">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-        </aside>
-      <section class="card card-rounded col-9">
-        <header class="card-header text-center">
-          <h2>
-            Network Activity Tab
-          </h2>
-        </header>
-          <div class="p-3">
-            <p class="card-body">
-            </p>
+                <button onclick="findCoordinates (event)" type="submit" id="fetch-button" class="btn">Submit</button>
+            </form>
           </div>
-        </section>
+            <ul class="col-8 mb-3"></ul>
+          </div>
+        </aside>
+      <section class = "biggestDisplay col-9">
+        <header></header>
+      </section>
+      <section class="card col-9">
+        <h3>5-Day Forecast</h3>
+        <header class="card-header text-center"></header>
+          <div class="p-3">
+            <p class="card-body"></p>
+          </div>
+      </section>
       </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/js/script.js"></script>  
 </body>
 </html>
