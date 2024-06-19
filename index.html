@@ -17,33 +17,95 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-  <header class="p-4 text-center hdrbg">
+  <header class="text-center hdrbg">
       <h1>Weather Dashboard</h1>
   </header>
-    <main class="flex-row justify-center align-center p-4 container">
-        <aside class="col-3">
-            <form id="city-form">
-                <div class="mb-3">
-                  <label for="city-input" class="form-label">Search for a City: </label>
-                  <input type="text" class="form-control" id="city-input" placeholder="San Diego" aria-describedby="location">
-                </div>
-                <button onclick="findCoordinates (event)" type="submit" id="fetch-button" class="btn">Submit</button>
-            </form>
+  <main class = container>
+    <div class="row">
+      <div class="col-3">
+      <form id="city-form" >
+          <label for="city-input" class="form-label">Search for a City: </label>
+          <input type="text" class="form-control" id="city-input" placeholder="San Diego" aria-describedby="location">
+        <button onclick="findCoordinates (event)" type="submit" id="fetch-button" class="btn col-12">Search</button>
+        <hr>
+      </form>
+    </div>
+      <div class = "col">
+        <div class="biggestDisplay">
+          <div class="card-body">
+            <h2 id="card-title"></h2>
+            <img class="icon"></img>
+            <p class = "temp-text">Temp:</p>
+            <p class = "wind-text">Wind:</p>
+            <p class = "humidity-text">Humidity:</p>
           </div>
-            <ul class="col-8 mb-3"></ul>
+        </div>
+      </div> 
+    
+    </div>
+      </div>
+        <ul class="col-3"></ul>
+      </div>
+  <section>
+    <h4 class="col-9">5-Day Forecast</h4>   
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h3 id="card-title-1"></h3>
+              <img id="icon-1"></img>
+              <p id="temp-text-1"></p>
+              <p id="wind-text-1"></p>
+              <p id="humidity-text-1"></p>
+            </div>
           </div>
-        </aside>
-      <section class = "biggestDisplay col-9">
-        <header></header>
-      </section>
-      <section class="card col-9">
-        <h3>5-Day Forecast</h3>
-        <header class="card-header text-center"></header>
-          <div class="p-3">
-            <p class="card-body"></p>
+        </div>          
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h3 id="card-title-2"></h3>
+              <img class="icon-2"></img>
+              <p class = "temp-text-2">Temp:</p>
+              <p class = "wind-text-2">Wind:</p>
+              <p class = "humidity-text-2">Humidity:</p>
+            </div>
           </div>
-      </section>
-      </main>
+        </div>      
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h3 id="card-title-3"></h3>
+              <img class="icon-3"></img>
+              <p class = "temp-text-3">Temp:</p>
+              <p class = "wind-text-3">Wind:</p>
+              <p class = "humidity-text-3">Humidity:</p>
+            </div>
+          </div>
+        </div>      
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h3 id="card-title-4"></h3>
+              <img class="icon-4"></img>
+              <p class = "temp-text-4">Temp:</p>
+              <p class = "wind-text-4">Wind:</p>
+              <p class = "humidity-text-4">Humidity:</p>
+            </div>
+          </div>
+        </div>      
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h3 id="card-title-5"></h3>
+              <img class="icon"></img>
+              <p class = "temp-text-5">Temp:</p>
+              <p class = "wind-text-5">Wind:</p>
+              <p class = "humidity-text-5">Humidity:</p>
+            </div>
+          </div>
+        </div>        
+  </section>
+  </main>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/js/script.js"></script>  
 </body>

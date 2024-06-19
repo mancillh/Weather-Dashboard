@@ -5,6 +5,7 @@ const fetchButton = document.getElementById('fetch-button');
 const previousLocationList = document.querySelector('ul');
 const biggestDisplay = document.querySelector('.biggestDisplay');
 
+// Finds latitude and longitude from user's city input
 function findCoordinates (event) {
   event.preventDefault();
 
@@ -22,154 +23,59 @@ function findCoordinates (event) {
       })
     .then (function (data) {
       for (let i = 0; i < data.length; i++) {
-          console.log("latitude = " + data[0].lat); 
-          console.log("longitude = " + data[0].lon);
-          const listCity = document.createElement('p');
-          listCity.textContent = data[0].name;
-          biggestDisplay.appendChild(listCity);
-          return data[0].lat && data[0].lon;
+          const listCity = document.getElementById('card-title');
+          let date = new Date().toLocaleDateString();
+          listCity.textContent = data[0].name + " (" + date + ")";
+          localStorage.setItem('latitude',JSON.stringify(data[0].lat));
+          localStorage.setItem('longitude',JSON.stringify(data[0].lon));
         }
-      
-      getApi();
       });
   }
 };
 
+// Pushes latitude and longitude from findCoordinates function into Open Weather Map query and produces the 5 day forecast
 function getApi() {
-  const queryURL = `api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=${APIKey}`;
-
-  fetch(queryURL)
+  let latitude = JSON.parse(localStorage.getItem('latitude'));
+  let longitude = JSON.parse(localStorage.getItem('longitude'));
+  const queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=5&appid=${APIKey}&units=imperial`;
+  
+  fetch(queryURL) 
     .then(function (response) {
         return response.json();
     })
-    .then (function (data) {
-        for (let i = 0; i < data.length; i++) {
-            const listItem = document.createElement('li');
-            listItem.textContent = data[i].html_url;
-            previousLocationList.appendChild(listItem);
-          }
-        console.log(data);
+    .then (function (data) { 
+      document.getElementById("card-title-1").textContent = data.list[1].dt_txt;
+      document.getElementById("temp-text-1").textContent = "Temp: " + data.list[1].main.temp;
+      document.getElementById("wind-text-1").textContent = "Wind: " + data.list[1].wind.speed;
+      document.getElementById("humidity-text-1").textContent = "Humidity: " + data.list[1].main.humidity;
+      // localStorage.setItem('iconCode',JSON.stringify(data.list[1].weather[0].icon));
+      // getIcon();
+      const img = document.getElementById("icon-1");
+      let iconCode = data.list[1].weather[0].icon;
+      img.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
     });
-}
-
-// fetchButton.addEventListener('click', getApi);
-
-// // Reads tasks from local storage and returns array of task objects.
-// // If there are no tasks in localStorage, it initializes an empty array ([]) and returns it.
-// function readCoordinatesFromStorage() {
-//   let coordinates = JSON.parse(localStorage.getItem('coordinates'));
-
-//   // If no tasks were retrieved from localStorage, assign tasks to a new empty array to push to later.
-//   if (!coordinates) {
-//     coordinates = [];
-//   }
-
-//   // Return the tasks array either empty or with data in it 
-//   return coordinates;
-// };
-
-// // Accepts an array of weather information, stringifys them, and saves them in localStorage.
-// function saveCoordinatesToStorage(coordinates) {
-//   localStorage.setItem('coordinates', JSON.stringify(coordinates));
-// };
-
-// function readWeatherDataFromStorage() {
-//     let data = JSON.parse(localStorage.getItem('data'));
-  
-//     // If no tasks were retrieved from localStorage, assign tasks to a new empty array to push to later.
-//     if (!data) {
-//       data = [];
-//     }
-  
-//     // Return the tasks array either empty or with data in it 
-//     return data;
-//   };
-  
-//   // Accepts an array of weather information, stringifys them, and saves them in localStorage.
-//   function saveWeatherDataToStorage(data) {
-//     localStorage.setItem('data', JSON.stringify(data));
-//   };
-
-// //function to create a daily forecast card
-// function createDailyForecastCard() {
-//   const dailyForeceastCard = $('<div>')
-//     .addClass('card task-card my-3')
-//   const cardHeader = $('<div>').addClass('card-header h4').text(forecast.date);
-//   const cardBody = $('<div>').addClass('card-body');
-//   const cardIcon = $('<p>').addClass('card-text').text(forecast.icon);
-//   const cardTemp = $('<p>').addClass('card-text').text(forecast.temp);
-//   const cardWind = $('<p>').addClass('card-text').text(forecast.wind);
-//   const cardHumidity = $('<p>').addClass('card-text').text(forecast.humidity);
-
-//   //Gather all the elements created above and append them to the correct elements.
-//   cardBody.append(cardIcon, cardTemp, cardWind, cardHumidity);
-//   dailyForeceastCard.append(cardHeader, cardBody);
+  };
+//   const cardTemp = $('<p>').addClass('card-text').text("Temp: " + data.list[i].main.temp);
+//   const cardWind = $('<p>').addClass('card-text').text("Wind: " + data.list[i].wind.speed);
+//   const cardHumidity = $('<p>').addClass('card-text').text("Hunidity: " + data.list[i].main.humidity);
 
 //   // Return the card.
-//   return taskCard;
-// }
-
-// // function to render the task list and make cards draggable
-// function renderTaskData() {
-//   const tasks = readTasksFromStorage();
-
-//   //Empty existing task cards out of the lanes
-//   const todoList = $('#todo-cards');
-//   todoList.empty();
-
-//   const inProgressList = $('#in-progress-cards');
-//   inProgressList.empty();
-
-//   const doneList = $('#done-cards');
-//   doneList.empty();
-
-//   //Loop through tasks and create task cards for each status
-//   for (task of tasks) {
-//     if (task.status === 'to-do') {
-//       todoList.append(createTaskCard(task));
-//     } else if (task.status === 'in-progress') {
-//       inProgressList.append(createTaskCard(task));
-//     } else if (task.status === 'done') {
-//       doneList.append(createTaskCard(task));
-//     }
-//   }
-
-// // save the tasks to localStorage
-// let tasks = JSON.parse(localStorage.getItem('tasks'));
-// saveTasksToStorage(tasks);
-
-// // Render task data back to screen
-// renderTaskData();
-
-// // function to handle adding a new task
-// function cityEntered(event) {
-//   event.preventDefault();
-
-//   // Read user input from form  
-//   const city = cityFormEl.val().trim();
-  
-//   const newCity = {
-//     //date: city,
-//     icon: data.weather[0].icon,
-//     temp: data.main.temp,
-//     wind: data.wind.speed,
-//     humidity: data.main.humidity,
-//   };
-
-//   // Pull the tasks from localStorage and push the new task to the array
-//   const tasks = readWeatherDataFromStorage();
-//   city.push(newCity);
-
-//   // Save the updated tasks array to localStorage
-//   saveWeatherDataToStorage();
-
-//   // Render task data back to the screen
-//   renderForecastData();
-
-//   // Clear the form inputs
-//   cityFormEl.val('');
+//   return dailyForecastCard;
 // };
-
 // // const listItem = document.createElement('li');
 // // listItem.textContent = data[i].html_url;
 // // previousLocationList.appendChild(listItem);
+getApi();
+
+// function getIcon () {
+//   let iconCode = JSON.parse(localStorage.getItem('iconCode'));
+//   const iconLink = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+//   console.log(iconLink);
+  // fetch(iconLink) 
+  //   .then(function (response) {
+  //   return response.json();
+  //   })
+  //   .then (function (data) { 
+  //     localStorage.setItem('iconImg',JSON.stringify(data));
+  //   });
+  // };
