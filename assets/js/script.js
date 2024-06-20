@@ -48,8 +48,6 @@ function getApi() {
       document.getElementById("temp-text-1").textContent = "Temp: " + data.list[1].main.temp;
       document.getElementById("wind-text-1").textContent = "Wind: " + data.list[1].wind.speed;
       document.getElementById("humidity-text-1").textContent = "Humidity: " + data.list[1].main.humidity;
-      // localStorage.setItem('iconCode',JSON.stringify(data.list[1].weather[0].icon));
-      // getIcon();
       const img = document.getElementById("icon-1");
       let iconCode = data.list[1].weather[0].icon;
       img.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
@@ -67,15 +65,3 @@ function getApi() {
 // // previousLocationList.appendChild(listItem);
 getApi();
 
-// function getIcon () {
-//   let iconCode = JSON.parse(localStorage.getItem('iconCode'));
-//   const iconLink = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-//   console.log(iconLink);
-  // fetch(iconLink) 
-  //   .then(function (response) {
-  //   return response.json();
-  //   })
-  //   .then (function (data) { 
-  //     localStorage.setItem('iconImg',JSON.stringify(data));
-  //   });
-  // };
