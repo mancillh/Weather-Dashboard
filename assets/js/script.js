@@ -1,5 +1,5 @@
 const APIKey = "cfd839927ae8a3a54571499306de4d74";
-const cityFormEl = $('#city-form');
+let cityFormEl = $('#city-form');
 const dailyWeatherForecastCardEl = $('#card');
 const fetchButton = document.getElementById('fetch-button');
 const previousLocationList = document.querySelector('ul');
@@ -28,9 +28,19 @@ function findCoordinates (event) {
           listCity.textContent = data[0].name + " (" + date + ")";
           localStorage.setItem('latitude',JSON.stringify(data[0].lat));
           localStorage.setItem('longitude',JSON.stringify(data[0].lon));
+          localStorage.setItem('previousCity',JSON.stringify(data[0].name));
         }
       });
   }
+};
+
+// adds recently searched cities to a list below search bar
+function addPreviousLocationToList () {
+  const listItem = document.createElement('li');
+  listItem.textContent = JSON.parse(localStorage.getItem('previousCity'));
+  listItem.className = "list-group-item", "list-group-item-dark";
+  previousLocationList.appendChild(listItem);
+  cityFormEl = '';
 };
 
 // Pushes latitude and longitude from findCoordinates function into Open Weather Map query and produces the 5 day forecast
@@ -53,15 +63,7 @@ function getApi() {
       img.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
     });
   };
-//   const cardTemp = $('<p>').addClass('card-text').text("Temp: " + data.list[i].main.temp);
-//   const cardWind = $('<p>').addClass('card-text').text("Wind: " + data.list[i].wind.speed);
-//   const cardHumidity = $('<p>').addClass('card-text').text("Hunidity: " + data.list[i].main.humidity);
 
-//   // Return the card.
-//   return dailyForecastCard;
-// };
-// // const listItem = document.createElement('li');
-// // listItem.textContent = data[i].html_url;
-// // previousLocationList.appendChild(listItem);
 getApi();
+addPreviousLocationToList ();
 
