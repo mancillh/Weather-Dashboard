@@ -91,7 +91,6 @@ function getApi(name, lat, lon) {
       let iconCode5 = data.list[39].weather[0].icon;
       img5.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode5}.png`);
 
-      addPreviousLocationToList ()
       document.getElementById("city-form").reset(); 
     });
   };

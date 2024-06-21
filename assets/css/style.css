@@ -70,7 +70,7 @@ label {
 .previousLocationBtn {
     background-color: grey;
     color: black;
-    max-width: auto;
+    width: auto;
 }
 
 .card {
