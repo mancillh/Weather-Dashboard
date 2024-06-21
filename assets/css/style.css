@@ -73,7 +73,11 @@ label {
     border-radius: 5px;
 }
 
-.card-width{
+.card-body {
+    font-size: 13px;
+}
+
+.card-width {
     width: 20%;
 }
 

@@ -16,17 +16,8 @@ function findCoordinates (event) {
         return response.json();
       })
     .then (function (data) {
-      // for (let i = 0; i < data.length; i++) {
-      //     const listCity = document.getElementById('card-title');
-      //     let date = new Date().toLocaleDateString();
-      //     listCity.textContent = data[0].name + " (" + date + ")";
-      //     localStorage.setItem('latitude',JSON.stringify(data[0].lat));
-      //     localStorage.setItem('longitude',JSON.stringify(data[0].lon));
-      //     localStorage.setItem('previousCity',JSON.stringify(data[0].name));
-      //   }
       getApi(data[0].name, data[0].lat, data[0].lon);
-      });
-    
+      }); 
   };
 
 //adds recently searched cities to a list below search bar
@@ -52,7 +43,7 @@ function getApi(name, lat, lon) {
         return response.json();
     })
     .then (function (data) { 
-      document.getElementById("card-title-1").textContent = name + new Date(data.list[0].dt*1000).toLocaleDateString();
+      document.getElementById("card-title").textContent = name + new Date(data.list[0].dt*1000).toLocaleDateString();
       document.getElementById("temp-text").textContent = "Temp: " + data.list[0].main.temp + " °F";
       document.getElementById("wind-text").textContent = "Wind: " + data.list[0].wind.speed + " MPH";
       document.getElementById("humidity-text").textContent = "Humidity: " + data.list[0].main.humidity + " %";
