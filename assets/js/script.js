@@ -43,13 +43,14 @@ function getApi(name, lat, lon) {
         return response.json();
     })
     .then (function (data) { 
-      document.getElementById("card-title").textContent = name + new Date(data.list[0].dt*1000).toLocaleDateString();
+      console.log(data);
+      document.getElementById("card-title").textContent = name + " " + new Date(data.list[0].dt*1000).toLocaleDateString();
       document.getElementById("temp-text").textContent = "Temp: " + data.list[0].main.temp + " °F";
       document.getElementById("wind-text").textContent = "Wind: " + data.list[0].wind.speed + " MPH";
       document.getElementById("humidity-text").textContent = "Humidity: " + data.list[0].main.humidity + " %";
       const img = document.getElementById("icon");
       let iconCode = data.list[0].weather[0].icon;
-      img.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode}.png`);
+      img.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
 
       document.getElementById("card-title-1").textContent = new Date(data.list[8].dt*1000).toLocaleDateString();
       document.getElementById("temp-text-1").textContent = "Temp: " + data.list[8].main.temp + " °F";
@@ -83,14 +84,15 @@ function getApi(name, lat, lon) {
       let iconCode4 = data.list[32].weather[0].icon;
       img4.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode4}.png`);
 
-      document.getElementById("card-title-5").textContent = new Date(data.list[40].dt*1000).toLocaleDateString();
-      document.getElementById("temp-text-5").textContent = "Temp: " + data.list[40].main.temp + " °F";
-      document.getElementById("wind-text-5").textContent = "Wind: " + data.list[40].wind.speed + " MPH";
-      document.getElementById("humidity-text-5").textContent = "Humidity: " + data.list[40].main.humidity + " %";
+      document.getElementById("card-title-5").textContent = new Date(data.list[39].dt*1000).toLocaleDateString();
+      document.getElementById("temp-text-5").textContent = "Temp: " + data.list[39].main.temp + " °F";
+      document.getElementById("wind-text-5").textContent = "Wind: " + data.list[39].wind.speed + " MPH";
+      document.getElementById("humidity-text-5").textContent = "Humidity: " + data.list[39].main.humidity + " %";
       const img5 = document.getElementById("icon-5");
-      let iconCode5 = data.list[40].weather[0].icon;
+      let iconCode5 = data.list[39].weather[0].icon;
       img5.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode5}.png`);
 
+      addPreviousLocationToList ()
       document.getElementById("city-form").reset(); 
     });
   };
