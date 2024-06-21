@@ -57,11 +57,20 @@ label {
 .btn {
     border-radius: 5px;
     border: 1px solid grey;
-    background-color: #4558b6;
-    color: white;
     margin: 10px;
     margin-left: 0;
     margin-bottom: 0;
+}
+
+.searchBtn {
+    background-color: #4558b6;
+    color: white;
+}
+
+.previousLocationBtn {
+    background-color: grey;
+    color: black;
+    max-width: auto;
 }
 
 .card {

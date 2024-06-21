@@ -26,7 +26,7 @@ function addPreviousLocationToList (name) {
     // Create button
     const previousLocationBtn = document.createElement('button');
     // Assign most recently searched city to the button
-    previousLocationBtn.className ='btn';
+    previousLocationBtn.className ='btn previousLocationBtn';
     // Display the city name
     previousLocationBtn.textContent = name;
     // Add the city name to a list
