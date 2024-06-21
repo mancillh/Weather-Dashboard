@@ -54,7 +54,7 @@ label {
     font-size: x-large;
 }
 
-#fetch-button {
+.btn {
     border-radius: 5px;
     border: 1px solid grey;
     background-color: #4558b6;
@@ -72,6 +72,7 @@ label {
     color: #d9e9e8;
     border-radius: 5px;
 }
+
 .card-width{
     width: 20%;
 }
