@@ -17,18 +17,18 @@ function findCoordinates (event) {
       })
     .then (function (data) {
       getApi(data[0].name, data[0].lat, data[0].lon);
-      }); 
+      addPreviousLocationToList(data[0].name)
+      })
   };
 
 //adds recently searched cities to a list below search bar
-function addPreviousLocationToList () {
-  console.log(JSON.parse(localStorage.getItem('previousCity')));
+function addPreviousLocationToList (name) {
     // Create button
     const previousLocationBtn = document.createElement('button');
     // Assign most recently searched city to the button
-    previousLocationBtn.className ='list-group-item-dark';
+    previousLocationBtn.className ='btn';
     // Display the city name
-    previousLocationBtn.textContent = JSON.parse(localStorage.getItem('previousCity'));
+    previousLocationBtn.textContent = name;
     // Add the city name to a list
     previousLocationList.append(previousLocationBtn);
 };
@@ -43,7 +43,6 @@ function getApi(name, lat, lon) {
         return response.json();
     })
     .then (function (data) { 
-      console.log(data);
       document.getElementById("card-title").textContent = name + " " + new Date(data.list[0].dt*1000).toLocaleDateString();
       document.getElementById("temp-text").textContent = "Temp: " + data.list[0].main.temp + " °F";
       document.getElementById("wind-text").textContent = "Wind: " + data.list[0].wind.speed + " MPH";
