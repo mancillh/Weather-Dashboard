@@ -11,7 +11,7 @@ The user is provided a weather dashboard with a search bar. When the user search
 To get a local copy up and running follow these simple steps.
 
 Clone the repo
-git clone https://github.com/mancillh/Weather-Dashboard
+"git clone https://github.com/mancillh/Weather-Dashboard"
 
 # Contributing
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
@@ -30,7 +30,7 @@ Distributed under the MIT License.
 # Contact
 Hannah Mancill - mancillh@gmail.com
 
-Project Link: https://mancillh.github.io/Weather-Dashboard/
+# Project Link: https://mancillh.github.io/Weather-Dashboard/
 
 
 
