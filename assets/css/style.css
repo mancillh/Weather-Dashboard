@@ -1,3 +1,6 @@
+/*majority of styling accomplished with Bootstrap*/
+
+/*styling for blue "Weather Dashboard" heading of page*/
 .headerBackground {
   background: linear-gradient(20deg, #4558b6 15%, #2d2475 87%);
   color: white;
@@ -6,15 +9,18 @@
   padding-left: 200px;
 }
 
+/*removes spacing around page so page content can fill width and height of screen*/
 .container {
     margin:0;
 }
 
+/*styling for bolded text at top of the biggest display, featuring weather info for today's date; allows icon to position to the right of heading*/
 h2 {
     display: inline-block;
     vertical-align: middle;
 }
 
+/*styling for the biggest display, the large white area with black border featuring weather info for today's date*/
 .biggestDisplay {
     color: black;
     background-color: white;
@@ -24,15 +30,18 @@ h2 {
     margin-bottom: 30px;
 }
 
+/*necessary so previous search buttons list begins all the way at the left side of the screen instead of coming in indented*/
 ul {
     padding: 0;
 }
 
+/*provides weight to "Search for a City: " text at top left of screen*/
 label {
     font-weight: 500;
     font-size: x-large;
 }
 
+/*styling for all buttons, border and rounded corners*/
 .btn {
     border-radius: 5px;
     border: 1px solid grey;
@@ -41,21 +50,25 @@ label {
     margin-bottom: 0;
 }
 
+/*styling for blue search button*/
 .searchBtn {
     background-color: #4558b6;
     color: white;
 }
 
+/*manages spacing between the grey line below the search bar and the previous search buttons list*/
 hr {
     margin-bottom: 6px;
 }
 
+/*styling for grey previous search buttons on left side of screen*/
 .previousLocationBtn {
     background-color: grey;
     color: black;
     width: 262px;
 }
 
+/*styling for 5, blue weather forecast cards*/
 .card {
     border: 1px solid #1a1a1a;
     margin-bottom: 1rem;
@@ -65,14 +78,17 @@ hr {
     border-radius: 5px;
 }
 
+/*styling for font size of card body*/
 .card-body {
     font-size: 13px;
 }
 
+/*allows 5 weather forecast cards to fit on one row*/
 .card-width {
     width: 20%;
 }
 
+/*provides empty white area at bottom for "breathing room"*/
 footer {
     height: 100px;
 }
