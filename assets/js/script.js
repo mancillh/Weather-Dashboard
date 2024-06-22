@@ -31,6 +31,8 @@ function addPreviousLocationToList (name) {
     previousLocationBtn.textContent = name;
     // Add the city name to a list
     previousLocationList.append(previousLocationBtn);
+    localStorage.setItem('name', name);
+    previousLocationBtn.addEventListener('click', findCoordinates);
 };
 
 // Pushes latitude and longitude from findCoordinates function into Open Weather Map query and produces the 5 day forecast
@@ -43,44 +45,44 @@ function getApi(name, lat, lon) {
         return response.json();
     })
     .then (function (data) { 
-      document.getElementById("card-title").textContent = name + " " + new Date(data.list[0].dt*1000).toLocaleDateString();
-      document.getElementById("temp-text").textContent = "Temp: " + data.list[0].main.temp + " °F";
-      document.getElementById("wind-text").textContent = "Wind: " + data.list[0].wind.speed + " MPH";
-      document.getElementById("humidity-text").textContent = "Humidity: " + data.list[0].main.humidity + " %";
+      document.getElementById("card-title").textContent = name + " " + "(" + new Date(data.list[0].dt*1000).toLocaleDateString() + ")";
+      document.getElementById("temp-text").textContent = "Temp: " + data.list[4].main.temp + " °F";
+      document.getElementById("wind-text").textContent = "Wind: " + data.list[4].wind.speed + " MPH";
+      document.getElementById("humidity-text").textContent = "Humidity: " + data.list[4].main.humidity + " %";
       const img = document.getElementById("icon");
-      let iconCode = data.list[0].weather[0].icon;
-      img.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
+      let iconCode = data.list[4].weather[0].icon;
+      img.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode}.png`);
 
-      document.getElementById("card-title-1").textContent = new Date(data.list[8].dt*1000).toLocaleDateString();
-      document.getElementById("temp-text-1").textContent = "Temp: " + data.list[8].main.temp + " °F";
-      document.getElementById("wind-text-1").textContent = "Wind: " + data.list[8].wind.speed + " MPH";
-      document.getElementById("humidity-text-1").textContent = "Humidity: " + data.list[8].main.humidity + " %";
+      document.getElementById("card-title-1").textContent = new Date(data.list[12].dt*1000).toLocaleDateString();
+      document.getElementById("temp-text-1").textContent = "Temp: " + data.list[12].main.temp + " °F";
+      document.getElementById("wind-text-1").textContent = "Wind: " + data.list[12].wind.speed + " MPH";
+      document.getElementById("humidity-text-1").textContent = "Humidity: " + data.list[12].main.humidity + " %";
       const img1 = document.getElementById("icon-1");
-      let iconCode1 = data.list[8].weather[0].icon;
+      let iconCode1 = data.list[12].weather[0].icon;
       img1.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode1}.png`);
 
-      document.getElementById("card-title-2").textContent = new Date(data.list[16].dt*1000).toLocaleDateString();
-      document.getElementById("temp-text-2").textContent = "Temp: " + data.list[16].main.temp + " °F";
-      document.getElementById("wind-text-2").textContent = "Wind: " + data.list[16].wind.speed + " MPH";
-      document.getElementById("humidity-text-2").textContent = "Humidity: " + data.list[16].main.humidity + " %";
+      document.getElementById("card-title-2").textContent = new Date(data.list[20].dt*1000).toLocaleDateString();
+      document.getElementById("temp-text-2").textContent = "Temp: " + data.list[20].main.temp + " °F";
+      document.getElementById("wind-text-2").textContent = "Wind: " + data.list[20].wind.speed + " MPH";
+      document.getElementById("humidity-text-2").textContent = "Humidity: " + data.list[20].main.humidity + " %";
       const img2 = document.getElementById("icon-2");
-      let iconCode2 = data.list[16].weather[0].icon;
+      let iconCode2 = data.list[20].weather[0].icon;
       img2.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode2}.png`);
 
-      document.getElementById("card-title-3").textContent = new Date(data.list[24].dt*1000).toLocaleDateString();
-      document.getElementById("temp-text-3").textContent = "Temp: " + data.list[24].main.temp + " °F";
-      document.getElementById("wind-text-3").textContent = "Wind: " + data.list[24].wind.speed + " MPH";
-      document.getElementById("humidity-text-3").textContent = "Humidity: " + data.list[24].main.humidity + " %";
+      document.getElementById("card-title-3").textContent = new Date(data.list[28].dt*1000).toLocaleDateString();
+      document.getElementById("temp-text-3").textContent = "Temp: " + data.list[28].main.temp + " °F";
+      document.getElementById("wind-text-3").textContent = "Wind: " + data.list[28].wind.speed + " MPH";
+      document.getElementById("humidity-text-3").textContent = "Humidity: " + data.list[28].main.humidity + " %";
       const img3 = document.getElementById("icon-3");
-      let iconCode3 = data.list[24].weather[0].icon;
+      let iconCode3 = data.list[28].weather[0].icon;
       img3.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode3}.png`);
 
-      document.getElementById("card-title-4").textContent = new Date(data.list[32].dt*1000).toLocaleDateString();
-      document.getElementById("temp-text-4").textContent = "Temp: " + data.list[32].main.temp + " °F";
-      document.getElementById("wind-text-4").textContent = "Wind: " + data.list[32].wind.speed + " MPH";
-      document.getElementById("humidity-text-4").textContent = "Humidity: " + data.list[32].main.humidity + " %";
+      document.getElementById("card-title-4").textContent = new Date(data.list[36].dt*1000).toLocaleDateString();
+      document.getElementById("temp-text-4").textContent = "Temp: " + data.list[36].main.temp + " °F";
+      document.getElementById("wind-text-4").textContent = "Wind: " + data.list[36].wind.speed + " MPH";
+      document.getElementById("humidity-text-4").textContent = "Humidity: " + data.list[36].main.humidity + " %";
       const img4 = document.getElementById("icon-4");
-      let iconCode4 = data.list[32].weather[0].icon;
+      let iconCode4 = data.list[36].weather[0].icon;
       img4.setAttribute('src',`https://openweathermap.org/img/wn/${iconCode4}.png`);
 
       document.getElementById("card-title-5").textContent = new Date(data.list[39].dt*1000).toLocaleDateString();
@@ -95,6 +97,6 @@ function getApi(name, lat, lon) {
     });
   };
 
-
 searchButton.addEventListener('submit', findCoordinates);
+
 
