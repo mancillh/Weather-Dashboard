@@ -55,7 +55,7 @@ function findCoordinatesOfPreviousCity (previousLocationBtnText) {
   // Asigns city variable as text on button
   let city = previousLocationBtnText;
   // URL to determine longitude and latitude (via Open Weather API) based on button text 
-  let geocodingURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
+  let geocodingURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
   
   //fetches longitude and latitude from Open Weather API to pass to getApi function and passes the city name to 
   //the getApi function. Note: the addPreviousLocationToList function is intentionally not called here to prevent
