@@ -12,7 +12,7 @@ function findCoordinates (event) {
   // assigns the variable city to the value from the form (what the user enters as their search)
   let city = cityInputVal.value 
   // URL to determine longitude and latitude (via Open Weather API) based on user's search input 
-  let geocodingURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
+  let geocodingURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
   
   //fetches longitude and latitude from Open Weather API to pass to getApi function and passes the city name to 
   //the getApi and addPreviousLocationToList functions
